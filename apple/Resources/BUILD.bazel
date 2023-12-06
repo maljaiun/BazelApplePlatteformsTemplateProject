@@ -27,6 +27,11 @@ filegroup(
         ),
 )
 
+filegroup(
+    name = "PreviewContent",
+    srcs = glob(["PreviewContent/**"]),
+)
+
 # filegroup(
 #     name = "resources"
 #     srcs = glob(

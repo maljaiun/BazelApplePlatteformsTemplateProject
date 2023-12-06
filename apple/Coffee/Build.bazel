@@ -1,0 +1,48 @@
+load("@build_bazel_rules_apple//apple:ios.bzl", "ios_application")
+load("@build_bazel_rules_apple//apple:versioning.bzl", "apple_bundle_version")
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+load("//common/bazel_tools:shared.bzl", "app_info", "versions")
+
+
+apple_bundle_version(
+    name = "Version",
+    build_version = "0.0.1",
+    short_version_string = "1.0",
+)
+
+swift_library(
+    name = "coffee.lib",
+    srcs = glob(["source/**/*.swift"]),
+    data = ["//apple/Resources:PreviewContent"],
+    module_name = "coffeeApp",
+    deps = [
+        "//apple/Modules/API:APILib",
+    ],
+)
+
+ios_application(
+    name = "Coffee",
+    app_icons = ["//apple/Resources:AppIcon.xcassets"],
+    bundle_id = app_info.bundle_id,
+    bundle_name = app_info.bundle_name,
+    entitlements = "CoffeeApp.entitlements",
+    executable_name = app_info.executable_name,
+    families = [
+        "iphone",
+        "ipad",
+    ],
+    infoplists = [":Info.plist"],
+    minimum_os_version = versions.minimum_ios_version,
+    resources = ["//apple/Resources:resources",],
+
+    # Add localizable assets here.
+    # strings = glob(["*.lproj/Localizable.strings"]),
+    version = ":Version",
+    visibility = [
+        "//:__subpackages__",
+        "@rules_xcodeproj//xcodeproj:generated",
+    ],
+    deps = [
+        ":coffee.lib",
+    ],
+)

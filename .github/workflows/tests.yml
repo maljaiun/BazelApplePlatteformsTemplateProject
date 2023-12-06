@@ -24,7 +24,7 @@ jobs:
       - name: Build and Test
         run: |
           # Build the app
-          bazelisk build -- //apple:HaapMac
+          bazelisk build -- //apple/Cat:Cat
 
           # Run the tests
           bazelisk test --local_test_jobs=1 -- //...

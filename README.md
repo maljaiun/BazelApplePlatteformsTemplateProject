@@ -1,6 +1,6 @@
-# SwiftUI iOS App with Bazel
+# SwiftUI/AppKit/UIKit Apps with Bazel
 
-This is an iOS application written in SwiftUI and built via Bazel. This is a starting place similar to creating a new project in Xcode and choosing SwiftUI as the starting place.
+There are Apple Platforms applications built via Bazel. This is a starting place similar to creating a new project in Xcode and choosing Apple Platforms as the starting place.
 
 ## Getting Started
 
@@ -9,14 +9,17 @@ Install Bazelisk via `brew install bazelisk`. `bazel` & `bazelisk` will now use 
 ### Generate/Open Project
 
 ```bash
-$ bazel run :xcodeproj
-$ open App.xcodeproj
+$ bazel run apple:xcode
+$ open apple/TemplateApps.xcodeproj
 ```
 
 ### Build Application (CLI)
 
 ```bash
-$ bazel build //app
+$ bazel build apple/Cat:Cat
+$ bazel build apple/Coffee:Coffee
+$ bazel build apple/Train:Train
+$ bazel build apple/Yipman:Yipman
 ```
 
 ### Run All Tests (CLI)
@@ -33,4 +36,4 @@ $ bazel test $(bazel query 'kind(ios_unit_test,//...)')
 
 ## Making It Your Own
 
-`tools/shared.bzl` contains a handful of definitions to define the name of the application, bundle identifier, and similar things. Update these values to change the application's name.
+`common/bazel_tools/shared.bzl` contains a handful of definitions to define the name of the application, bundle identifier, and similar things. Update these values to change the application's name.

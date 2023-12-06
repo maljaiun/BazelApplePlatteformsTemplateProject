@@ -1,0 +1,46 @@
+load("@build_bazel_rules_apple//apple:macos.bzl", "macos_application")
+load("@build_bazel_rules_apple//apple:versioning.bzl", "apple_bundle_version")
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+load("//common/bazel_tools:shared.bzl",  "macapp_info", "versions")
+
+apple_bundle_version(
+    name = "Version",
+    build_version = "0.5.9",
+    short_version_string = "1.0",
+)
+
+swift_library(
+    name = "macapp.library",
+    srcs = glob(["Sources/**/*.swift"]),
+    data = ["//apple/Resources:PreviewContent"],
+    module_name = "macapp",
+    deps = [
+    ],
+)
+
+macos_application(
+    name = "Cat",
+    app_icons = ["//apple/Resources:AppIcon.xcassets"],
+    bundle_id = macapp_info.bundle_id,
+    bundle_name = macapp_info.bundle_name,
+    entitlements = "CatApp.entitlements",
+    executable_name = macapp_info.executable_name,
+    infoplists = [":Info.plist"],
+    minimum_os_version = versions.minimum_mac_version,
+    resources = ["//apple/Resources:resources",],
+
+    # resources = glob(
+    #     [
+    #         "Resources/Assets/Assets.xcassets/**",
+    #     ],
+    #     exclude = ["Resources/Assets/Assets.xcassets/AppIcon.appiconset/**"],
+    # ),
+    version = ":Version",
+    visibility = [
+        "//:__subpackages__",
+        "@rules_xcodeproj//xcodeproj:generated",
+    ],
+    deps = [
+        ":macapp.library",
+    ],
+)
