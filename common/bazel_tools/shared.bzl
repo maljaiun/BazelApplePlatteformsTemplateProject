@@ -22,8 +22,6 @@ uikit_info = struct(
     executable_name = "Haapuikitappbin",
 )
 
-
-
 versions = struct(
     minimum_ios_version = "15.0",
     minimum_mac_version = "11.0",

@@ -3,7 +3,6 @@ load("@build_bazel_rules_apple//apple:versioning.bzl", "apple_bundle_version")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 load("//common/bazel_tools:shared.bzl", "uikit_info", "versions")
 
-
 apple_bundle_version(
     name = "Version",
     build_version = "0.0.1",
@@ -22,7 +21,6 @@ swift_library(
     tags = ["manual"],
 )
 
-
 ios_application(
     name = "Train",
     app_icons = ["//apple/Resources:AppIcon.xcassets"],
@@ -33,7 +31,6 @@ ios_application(
     # bundle_name = uikit_info.bundle_name,
     # entitlements = "Haap/ios app.entitlements",
     # executable_name = uikit_info.executable_name,
-
     families = [
         "iphone",
         "ipad",
@@ -41,13 +38,13 @@ ios_application(
     infoplists = [":Info.plist"],
     launch_storyboard = "//apple/Resources:Launch.storyboard",
     minimum_os_version = versions.minimum_ios_version,
-    deps = [":Sources"],
+    resources = ["//apple/Resources:resources"],
+    version = ":Version",
     visibility = [
         "//:__subpackages__",
         "@rules_xcodeproj//xcodeproj:generated",
     ],
-    resources = ["//apple/Resources:resources",],
-    version = ":Version",
+    deps = [":Sources"],
 
     # resources = glob(
     #     [
@@ -57,18 +54,8 @@ ios_application(
     # ),
 )
 
-
-    
-   
-    # Add localizable assets here.
-    # strings = glob(["*.lproj/Localizable.strings"]),
-    
-
-
-
-
-
-
+# Add localizable assets here.
+# strings = glob(["*.lproj/Localizable.strings"]),
 
 # swift_library(
 #     name = "Tests",

@@ -1,7 +1,6 @@
 package(default_visibility = [
     # "//examples:__subpackages__",
     "//visibility:public",
-
 ])
 
 licenses(["notice"])
@@ -20,11 +19,10 @@ filegroup(
     name = "resources",
     srcs = glob(
         [
-             "Assets/Assets.xcassets/**",
-            
+            "Assets/Assets.xcassets/**",
         ],
         exclude = ["Assets/Assets.xcassets/AppIcon.appiconset/**"],
-        ),
+    ),
 )
 
 filegroup(
@@ -41,10 +39,6 @@ filegroup(
 #         exclude = ["Assets/Assets.xcassets/AppIcon.appiconset/**"],
 #     ),
 # )
-
-
-
-
 
 # filegroup(
 #     name = "TVBrandAssets.xcassets",

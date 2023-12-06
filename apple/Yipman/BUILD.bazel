@@ -1,8 +1,7 @@
 load("@build_bazel_rules_apple//apple:macos.bzl", "macos_application")
 load("@build_bazel_rules_apple//apple:versioning.bzl", "apple_bundle_version")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
-load("//common/bazel_tools:shared.bzl", "appkit_info","versions")
-
+load("//common/bazel_tools:shared.bzl", "appkit_info", "versions")
 
 apple_bundle_version(
     name = "Version",
@@ -32,7 +31,6 @@ macos_application(
     bundle_name = appkit_info.bundle_name,
     # entitlements = "HaapMac/Haap.entitlements",
     executable_name = appkit_info.executable_name,
-
     infoplists = [":Info.plist"],
     minimum_os_version = versions.minimum_mac_version,
     version = ":Version",

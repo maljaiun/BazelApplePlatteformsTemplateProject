@@ -32,7 +32,7 @@ public class AppDelegate: NSObject, UIApplicationDelegate {
   /// The start of the application.
   public func application(
     _ application: UIApplication,
-    didFinishLaunchingWithOptions: [UIApplication.LaunchOptionsKey : Any]?
+    didFinishLaunchingWithOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     return true
   }
