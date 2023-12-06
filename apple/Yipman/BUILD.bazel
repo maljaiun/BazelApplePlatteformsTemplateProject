@@ -12,7 +12,7 @@ apple_bundle_version(
 
 swift_library(
     name = "Source",
-    srcs = ["AppDelegate.swift"],
+    srcs = ["YipmanAppDelegate.swift"],
     data = [
         "//apple/Resources:Main.AppKit.storyboard",
     ],
