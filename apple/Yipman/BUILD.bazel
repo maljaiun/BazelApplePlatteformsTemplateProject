@@ -1,0 +1,52 @@
+load("@build_bazel_rules_apple//apple:macos.bzl", "macos_application")
+load("@build_bazel_rules_apple//apple:versioning.bzl", "apple_bundle_version")
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+load("//common/bazel_tools:shared.bzl", "appkit_info","versions")
+
+
+apple_bundle_version(
+    name = "Version",
+    build_version = "0.3.7",
+    short_version_string = "1.0",
+)
+
+swift_library(
+    name = "Source",
+    srcs = ["AppDelegate.swift"],
+    data = [
+        "//apple/Resources:Main.AppKit.storyboard",
+    ],
+)
+
+# Packaging
+
+# filegroup(
+#    name = "PreviewContent",
+#    srcs = glob(["Resources/PreviewContent/**"]),
+# )
+macos_application(
+    name = "Yipman",
+    app_icons = ["//apple/Resources:AppIcon.xcassets"],
+    # app_icons = glob(["Resources/Assets/Assets.xcassets/AppIcon.appiconset/**"]),
+    bundle_id = appkit_info.bundle_id,
+    bundle_name = appkit_info.bundle_name,
+    # entitlements = "HaapMac/Haap.entitlements",
+    executable_name = appkit_info.executable_name,
+
+    infoplists = [":Info.plist"],
+    minimum_os_version = versions.minimum_mac_version,
+    version = ":Version",
+    #  resources = glob(
+    #   [
+    #        "Resources/Assets/Assets.xcassets/**",
+    #    ],
+    #    exclude = ["Resources/Assets/Assets.xcassets/AppIcon.appiconset/**"],
+    # ),
+    visibility = [
+        "//:__subpackages__",
+        "@rules_xcodeproj//xcodeproj:generated",
+    ],
+    deps = [
+        ":Source",
+    ],
+)

@@ -1,0 +1,57 @@
+package(default_visibility = [
+    # "//examples:__subpackages__",
+    "//visibility:public",
+
+])
+
+licenses(["notice"])
+
+exports_files([
+    "Launch.storyboard",
+    "Main.AppKit.storyboard",
+])
+
+filegroup(
+    name = "AppIcon.xcassets",
+    srcs = glob(["Assets/Assets.xcassets/AppIcon.appiconset/**"]),
+)
+
+filegroup(
+    name = "resources",
+    srcs = glob(
+        [
+             "Assets/Assets.xcassets/**",
+            
+        ],
+        exclude = ["Assets/Assets.xcassets/AppIcon.appiconset/**"],
+        ),
+)
+
+# filegroup(
+#     name = "resources"
+#     srcs = glob(
+#         [
+#             "Assets/Assets.xcassets/**",
+#         ],
+#         exclude = ["Assets/Assets.xcassets/AppIcon.appiconset/**"],
+#     ),
+# )
+
+
+
+
+
+# filegroup(
+#     name = "TVBrandAssets.xcassets",
+#     srcs = glob(["TVBrandAssets.xcassets/**"]),
+# )
+
+# filegroup(
+#     name = "VisionAppIcon.xcassets",
+#     srcs = glob(["VisionAppIcon.xcassets/**"]),
+# )
+
+# filegroup(
+#     name = "WatchAppIcon.xcassets",
+#     srcs = glob(["WatchAppIcon.xcassets/**"]),
+# )
