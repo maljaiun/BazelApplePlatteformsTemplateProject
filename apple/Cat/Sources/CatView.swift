@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct CatView: View {
     var body: some View {
         VStack {
 

@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ContentView: View {
+struct CoffeeView: View {
     var body: some View {
         VStack {
 
