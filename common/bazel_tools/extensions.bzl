@@ -1,4 +1,4 @@
-load("//tools:repositories.bzl", "swiftlint_dependency")
+load("//common/bazel_tools:repositories.bzl", "swiftlint_dependency")
 
 def _non_module_dependencies_impl(_ctx):
     swiftlint_dependency()

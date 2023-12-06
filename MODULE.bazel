@@ -25,5 +25,5 @@ bazel_dep(
     dev_dependency = True,
 )
 
-non_module_dependencies = use_extension("//tools:extensions.bzl", "non_module_dependencies")
+non_module_dependencies = use_extension("//common/bazel_tools:extensions.bzl", "non_module_dependencies")
 use_repo(non_module_dependencies, "SwiftLint")
